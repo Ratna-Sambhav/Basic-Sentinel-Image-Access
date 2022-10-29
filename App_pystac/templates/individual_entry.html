@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3> Here are your details. </h3>
+
+    <h4> {{post.pk}}. {{post.userName}} </h4>
+    <b> DateAsked: </b> {{post.date}}     
+    <b> Latitude: </b> {{post.lat}}     
+    <b> Longitude: </b> {{post.long}}    <br><br>
+    <button onclick="getAndSaveImage()"> Fetch Image </button>
+    <p class="check"> </p>
+    <!-- <form name="person">
+        <input pk="name" value="2">
+    </form> -->
+
+    <script> 
+        function getAndSaveImage(){
+            let json = JSON.stringify({'pk': '1'});
+            const request = new XMLHttpRequest();
+            request.open("POST", "http://127.0.0.1:8000/api/");
+            request.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+            request.send(json);
+
+            document.querySelector(".check").innerHTML = 'DONE';
+        }
+    </script>
+{% endblock content %}
